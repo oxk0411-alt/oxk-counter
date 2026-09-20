@@ -1,4 +1,6 @@
-# 随机数生成器
+# 计数器
+
+当前版本的功能是随机数生成器。
 
 一个使用 Vite 和原生 JavaScript 构建的轻量随机数网页工具。
 
@@ -42,3 +44,4 @@ npm run build
 - HTML
 - CSS
 - JavaScript
+
