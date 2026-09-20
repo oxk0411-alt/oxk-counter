@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="一个使用浏览器加密随机数 API 生成随机整数的轻量网页工具。"
+    />
+    <title>随机数生成器</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div class="hero__eyebrow">RANDOM NUMBER GENERATOR</div>
+        <h1>随机数生成器</h1>
+        <p>设置范围，安全、快速地生成一个或多个随机整数。</p>
+      </header>
+
+      <section class="panel generator-panel" aria-labelledby="generator-title">
+        <div class="panel__header">
+          <div>
+            <p class="section-kicker">生成设置</p>
+            <h2 id="generator-title">选择区间与数量</h2>
+          </div>
+          <span class="secure-badge">加密随机</span>
+        </div>
+
+        <form id="generator-form" novalidate>
+          <div class="field-grid">
+            <label class="field">
+              <span>最小值</span>
+              <input id="min-value" name="min" type="number" value="1" step="1" inputmode="numeric" />
+            </label>
+
+            <label class="field">
+              <span>最大值</span>
+              <input id="max-value" name="max" type="number" value="100" step="1" inputmode="numeric" />
+            </label>
+
+            <label class="field">
+              <span>生成数量</span>
+              <input id="count-value" name="count" type="number" value="1" min="1" max="100" step="1" inputmode="numeric" />
+            </label>
+          </div>
+
+          <label class="toggle-row">
+            <input id="unique-value" name="unique" type="checkbox" />
+            <span class="toggle" aria-hidden="true"></span>
+            <span>
+              <strong>结果不重复</strong>
+              <small>数量必须小于或等于可选整数总数</small>
+            </span>
+          </label>
+
+          <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+
+          <button class="generate-button" type="submit">
+            <span>生成随机数</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+      </section>
+
+      <section class="panel result-panel" aria-labelledby="result-title">
+        <div class="panel__header">
+          <div>
+            <p class="section-kicker">生成结果</p>
+            <h2 id="result-title">你的随机数</h2>
+          </div>
+          <div class="result-actions">
+            <button id="copy-button" class="text-button" type="button" disabled>复制</button>
+            <button id="clear-button" class="text-button text-button--muted" type="button">清空</button>
+          </div>
+        </div>
+
+        <div id="result-output" class="result-output" aria-live="polite">
+          <span class="empty-state">设置范围后点击“生成随机数”</span>
+        </div>
+        <p id="result-meta" class="result-meta"></p>
+      </section>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="panel__header">
+          <div>
+            <p class="section-kicker">本次记录</p>
+            <h2 id="history-title">最近生成</h2>
+          </div>
+          <span id="history-count" class="history-count">0 条</span>
+        </div>
+        <ol id="history-list" class="history-list">
+          <li class="empty-state">还没有生成记录</li>
+        </ol>
+      </section>
+
+      <footer class="app-footer">
+        随机值来自浏览器 <code>crypto.getRandomValues()</code>，不使用数学近似随机数。
+      </footer>
+    </main>
+  </body>
+</html>
